@@ -3,3 +3,4 @@
 **/.python_packages/
 **/.env
 **/local.settings.json
+./data/logs/
