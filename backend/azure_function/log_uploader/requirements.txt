@@ -1,0 +1,7 @@
+azure-functions
+azure-search-documents==11.7.0b1
+langchain-openai
+azure-monitor-opentelemetry
+langsmith
+langfuse
+python-dotenv

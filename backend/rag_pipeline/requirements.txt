@@ -1,0 +1,7 @@
+azure-search-documents==11.7.0b1
+azure-storage-blob
+langchain
+langchain-openai
+langchain-community
+python-dotenv
+azure.identity

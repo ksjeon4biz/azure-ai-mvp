@@ -1,0 +1,9 @@
+streamlit
+langchain
+langchain-openai
+langchain-community
+azure-search-documents==11.7.0b1
+python-dotenv
+azure-monitor-opentelemetry
+langsmith
+langfuse
