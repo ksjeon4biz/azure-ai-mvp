@@ -3,6 +3,7 @@ import streamlit as st
 from dotenv import find_dotenv, load_dotenv
 
 load_dotenv(find_dotenv())
+port = int(os.environ.get("PORT", 8000))
 
 # --- App Insights(OpenTelemetry) ---
 from azure.monitor.opentelemetry import configure_azure_monitor

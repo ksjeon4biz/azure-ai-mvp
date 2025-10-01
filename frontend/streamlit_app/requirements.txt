@@ -7,3 +7,4 @@ python-dotenv
 azure-monitor-opentelemetry
 langsmith
 langfuse
+dotenv
