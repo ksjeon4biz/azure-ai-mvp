@@ -4,7 +4,6 @@ from dotenv import find_dotenv, load_dotenv
 
 load_dotenv(find_dotenv())
 
-
 # --- App Insights(OpenTelemetry) ---
 from azure.monitor.opentelemetry import configure_azure_monitor
 if os.getenv("APPLICATIONINSIGHTS_CONNECTION_STRING"):

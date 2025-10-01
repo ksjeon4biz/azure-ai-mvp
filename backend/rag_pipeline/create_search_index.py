@@ -15,6 +15,7 @@ from dotenv import find_dotenv, load_dotenv
 
 load_dotenv(find_dotenv())
 
+
 endpoint = os.environ["AZURE_SEARCH_ENDPOINT"]
 key = os.environ["AZURE_SEARCH_KEY"]
 index_name = os.environ.get("SEARCH_INDEX_NAME", "log-index")
