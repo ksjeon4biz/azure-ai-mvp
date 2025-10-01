@@ -66,8 +66,6 @@ except TypeError:
         text_field="content",
     )
 
-retriever = vectorstore.as_retriever(k=4)
-
 st.set_page_config(page_title="로그 분석 챗봇", page_icon="🪵")
 st.title("🪵 로그 분석 챗봇")
 
@@ -80,13 +78,6 @@ with st.sidebar:
     st.caption("LangSmith/LangFuse, AppInsights로 요청/응답이 추적됩니다.")
 
 query = st.text_input("무엇이 궁금한가요?", placeholder="예: 9/23 로그에서 Exception/Timeout 요약해줘")
-
-def apply_filter(r, fname: str):
-    if not fname:
-        return r
-    # langchain-community azuresearch 버전마다 다르므로
-    # 필터를 retriever 대신, 직접 similarity_search/hybrid_search 호출에서 처리하는 게 안전
-    return None
 
 if st.button("질의하기", type="primary", disabled=not query):
     t0 = time.time()
@@ -108,26 +99,26 @@ if st.button("질의하기", type="primary", disabled=not query):
                                               inputs={"query": query, "mode": mode, "filename": file_filter or None},
                                               tags=["qa"])
 
-        # 검색 + QA
         try:
-            # 간단 구현: Vector 기본 / Hybrid 시도 후 실패하면 Vector fallback
+            # retriever에 file_filter 적용 (옵션1 핵심 부분)
+            # --- retriever 생성 ---
+            search_kwargs = {}
+            if file_filter:
+                search_kwargs["filter"] = {"filename": file_filter}
+            retriever = vectorstore.as_retriever(search_kwargs=search_kwargs)
+
+            # --- hybrid 검색 (필요한 경우) ---
             sources = []
             if mode.startswith("Hybrid"):
                 with suppress(Exception):
-                    # 일부 버전에서만 제공: hybrid_search
-                    sources = vectorstore.hybrid_search(query, k=k)
-            if not sources:
-                if file_filter:
-                    # 파일 필터가 있으면 직접 similarity_search로 처리
-                    sources = vectorstore.similarity_search(query, k=k, filter={"filename": file_filter})
-                else:
-                    sources = vectorstore.similarity_search(query, k=k)
+                    sources = vectorstore.hybrid_search(query, k=k)  # ✅ k는 여기서만!
+
 
             # QA 체인
             qa = RetrievalQA.from_chain_type(llm=llm, retriever=retriever, return_source_documents=True, chain_type="stuff")
             result = qa.invoke({"query": query})
             answer = result["result"]
-            used = result.get("source_documents", []) or sources
+            used = result.get("source_documents", [])
 
             # 출력
             st.subheader("답변")
@@ -159,4 +150,3 @@ if st.button("질의하기", type="primary", disabled=not query):
             if ls_run:
                 with suppress(Exception):
                     ls_client.update_run(run_id=ls_run.id, error=str(e))
-

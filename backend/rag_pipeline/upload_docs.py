@@ -44,7 +44,7 @@ def upload_log(filename: str, content: str):
     search_client.upload_documents([doc])
 
 def main():
-    target = LOG_DIR / "2025-09-25.log"   # 필요 시 인자/글롭으로 확장
+    target = LOG_DIR / "2025-09-29.log"   # 필요 시 인자/글롭으로 확장
     with target.open("r", encoding="utf-8") as f:
         text = f.read()
     upload_log(target.name, text)

@@ -1,0 +1,8 @@
+2025-09-26 08:28:13,793 ERROR  [stdout] (default task-72) 2025-09-26 08:28:13 [INFO ] [RestTemplateLoggingRequestInterceptor.java]traceRequest(60) : [REQUEST] Uri : http://10.217.69.132:8080/ia/v1.0/mvno/moscTelCallTotUseTime
+2025-09-26 08:28:13,793 INFO  [stdout] (default task-72) , Method : POST
+2025-09-26 08:28:13,793 INFO  [stdout] (default task-72) , Headers : 
+2025-09-26 08:28:13,793 INFO  [stdout] (default task-72) {
+2025-09-26 08:28:13,793 INFO  [stdout] (default task-72)   "Accept" : [ "application/json, application/x-jackson-smile, application/cbor, application/*+json" ],
+2025-09-26 08:28:13,793 ERROR  [stdout] (default task-72)   "Content-Type" : [ "application/json" ],
+2025-09-26 08:28:13,793 INFO  [stdout] (default task-72)   "Content-Length" : [ "359" ]
+2025-09-26 08:28:13,793 INFO  [stdout] (default task-72) }
