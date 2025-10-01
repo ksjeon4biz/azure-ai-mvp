@@ -5,3 +5,7 @@
 **/local.settings.json
 **/settings.json
 **/.vscode
+
+.env
+
+settings.json
