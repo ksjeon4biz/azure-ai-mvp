@@ -11,9 +11,9 @@ from azure.search.documents.indexes.models import (
     VectorSearchProfile,
     HnswAlgorithmConfiguration,  # ← 구체 알고리즘 클래스
 )
-from dotenv import load_dotenv
+from dotenv import find_dotenv, load_dotenv
 
-load_dotenv()
+load_dotenv(find_dotenv())
 endpoint = os.environ["AZURE_SEARCH_ENDPOINT"]
 key = os.environ["AZURE_SEARCH_KEY"]
 index_name = os.environ.get("SEARCH_INDEX_NAME", "log-index")

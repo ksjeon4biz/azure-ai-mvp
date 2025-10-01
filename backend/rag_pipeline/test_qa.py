@@ -3,7 +3,7 @@ import importlib, asyncio  # noqa
 importlib.invalidate_caches()
 
 import os
-from dotenv import load_dotenv
+from dotenv import find_dotenv, load_dotenv
 from contextlib import suppress
 import gc
 
@@ -11,7 +11,7 @@ from langchain_openai import AzureChatOpenAI, AzureOpenAIEmbeddings
 from langchain_community.vectorstores.azuresearch import AzureSearch
 from langchain.chains import RetrievalQA
 
-load_dotenv()
+load_dotenv(find_dotenv())
 
 def build_llm_and_embeddings():
     llm = AzureChatOpenAI(
