@@ -1,7 +1,9 @@
 import os, time
 import streamlit as st
 from dotenv import find_dotenv, load_dotenv
+
 load_dotenv(find_dotenv())
+
 
 # --- App Insights(OpenTelemetry) ---
 from azure.monitor.opentelemetry import configure_azure_monitor

@@ -13,6 +13,7 @@ from langchain.chains import RetrievalQA
 
 load_dotenv(find_dotenv())
 
+
 def build_llm_and_embeddings():
     llm = AzureChatOpenAI(
         azure_deployment=os.environ["AZURE_OPENAI_CHAT_DEPLOYMENT"],

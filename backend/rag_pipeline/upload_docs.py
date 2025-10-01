@@ -6,6 +6,7 @@ from langchain_openai import AzureOpenAIEmbeddings
 
 load_dotenv(find_dotenv())
 
+
 AZURE_SEARCH_ENDPOINT = os.getenv("AZURE_SEARCH_ENDPOINT")
 AZURE_SEARCH_KEY = os.getenv("AZURE_SEARCH_KEY")
 SEARCH_INDEX_NAME = os.getenv("SEARCH_INDEX_NAME", "log-index")

@@ -3,6 +3,7 @@ from azure.search.documents.indexes import SearchIndexClient
 import os
 from dotenv import find_dotenv, load_dotenv
 
+
 load_dotenv(find_dotenv())
 search_endpoint = os.environ["AZURE_SEARCH_ENDPOINT"]
 search_key = os.environ["AZURE_SEARCH_KEY"]
